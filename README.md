@@ -1,61 +1,133 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
 
-## About Laravel
+```markdown
+# 🏠 Tolet Kenya - Property Management System
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+**Tolet Kenya** is a Laravel 12-based web application designed to streamline property management for real estate agencies, landlords, and building managers. It offers powerful features for managing landlords, buildings, units, tenants, leases, rent payments, and commission tracking — all within a modern, mobile-friendly interface.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 🚀 Features
 
-## Learning Laravel
+### 🧑‍💼 Landlords
+- Add & manage landlords with photo, business name, ID, email, and phone
+- Each landlord can own multiple buildings
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 🏢 Buildings
+- Assign buildings to landlords
+- Add unit types (e.g., bedsitter, 1-bedroom) via a JSON interface
+- Automatically generate units based on unit types
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### 🏠 Units
+- Linked to buildings and tenants
+- Tracks rent, deposit, lease dates, and occupancy status
+- Units can be marked vacant, occupied, or under maintenance
+- Prevent deletion of occupied units
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 👥 Tenants
+- Multi-step onboarding (3 steps: basic info → emergency contact → photo/unit assignment)
+- Each tenant can be assigned to multiple units
+- Upload photo and assign lease period
+- Emergency contact storage
+- Auto-link units during onboarding
 
-## Laravel Sponsors
+### 💵 Payments
+- Admin records monthly payments
+- Commission (e.g., 10–20%) deducted automatically
+- Auto-calculates landlord amount and commission
+- Tracks receipt reference, payment method, notes
+- Payment summary for current month on dashboard
+- Export PDF and filter by date, tenant, or unit
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 📊 Dashboard
+- Key stats: landlords, buildings, units, tenants
+- Unit summary: vacant vs occupied
+- Payments summary: total paid, unpaid units, receipts issued
+- Total commission earned (monthly)
+- Recent activity (latest tenants)
 
-### Premium Partners
+### 📦 Utilities
+- File uploads (tenant photos)
+- Dynamic unit dropdowns (based on selected tenant)
+- Blade components for clean and reusable forms
+- Export CSV (tenants, landlords, buildings)
+- PDF export (payments)
+- TailwindCSS design with glass UI
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+---
 
-## Contributing
+## 🛠 Tech Stack
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- **Framework:** Laravel 12
+- **Frontend:** Blade, Tailwind CSS, Vite
+- **JS:** Vanilla JS
+- **Auth:** Laravel Breeze (custom styled)
+- **Database:** MySQL
+- **PDF Export:** [barryvdh/laravel-dompdf](https://github.com/barryvdh/laravel-dompdf)
 
-## Code of Conduct
+---
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## 📁 Folder Structure Highlights
 
-## Security Vulnerabilities
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+app/Models            → Eloquent models (Landlord, Building, Tenant, Unit, Payment)
+app/Http/Controllers  → Controller logic
+resources/views       → Blade views (CRUD + onboarding)
+routes/web.php        → Route definitions
+database/migrations   → Schema migrations
+storage/app/public    → Uploaded photos (with symlink)
 
-## License
+````
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
+
+## 🔧 Installation & Setup
+
+```bash
+git clone https://github.com/yourname/tolet-kenya.git
+cd tolet-kenya
+
+composer install
+npm install && npm run dev
+
+cp .env.example .env
+php artisan key:generate
+
+php artisan migrate --seed
+php artisan storage:link
+php artisan serve
+````
+
+---
+
+## ✅ Requirements
+
+* PHP 8.1+
+* MySQL 5.7+/MariaDB
+* Node.js & npm
+* Laravel CLI
+
+---
+
+## 📌 Roadmap
+
+* Role-based access (Admin, Agent, Landlord)
+* SMS/Email reminders (rent due, lease expiring)
+* Maintenance request tracking
+* Online tenant applications
+* Rent defaulter flagging
+
+---
+
+## 📄 License
+
+This project is open-source under the [MIT License](LICENSE).
+
+---
+
+## 👨‍💻 Author
+
+Made by Francis Kiarie
+
+```
