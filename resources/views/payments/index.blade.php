@@ -89,7 +89,7 @@
 
         <div>
             <label class="block text-sm text-purple-200">Tenant</label>
-            <select name="tenant_id" id="tenant_id" required class="w-full rounded bg-white/10 text-white p-2 border border-white/20">
+            <select name="tenant_id" id="tenant_id" required class="w-full rounded bg-white/10 text-blue-900 p-2 border border-white/20">
                 <option value="">Select Tenant</option>
                 @foreach ($tenants as $tenant)
                     <option value="{{ $tenant->id }}">{{ $tenant->full_name }}</option>
@@ -99,7 +99,7 @@
 
         <div>
             <label class="block text-sm text-purple-200">Unit</label>
-            <select name="unit_id" id="unit_id" required class="w-full rounded bg-white/10 text-white p-2 border border-white/20">
+            <select name="unit_id" id="unit_id" required class="w-full rounded bg-white/10 text-blue-900 p-2 border border-white/20">
                 <option value="">Select Unit</option>
             </select>
         </div>
